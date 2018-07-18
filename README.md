@@ -1,0 +1,2 @@
+# sandbox.vps.sakura.docker.multi.wordpress
+さくらVPSで複数のWordPressサイトをSSL対応してDocker上に展開するサンプルです
