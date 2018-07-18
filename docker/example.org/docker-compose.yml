@@ -1,0 +1,24 @@
+version: "2"
+services:
+    wordpress:
+        image: wordpress:latest
+        ports:
+            - "8001:80"
+        depends_on:
+            - mysql
+        environment:
+            VIRTUAL_HOST: example.org,example.org
+            LETSENCRYPT_HOST: example.org,www.example.org
+            LETSENCRYPT_EMAIL: webmaster@example.org
+            WORDPRESS_DB_HOST: "mysql:3306"
+        env_file: .env
+    mysql:
+      image: mysql:5.7
+      env_file: .env
+      command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --skip-character-set-client-handshake
+      restart: always
+
+networks:
+  default:
+    external:
+      name: shared
